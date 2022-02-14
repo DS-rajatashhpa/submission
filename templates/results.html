@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/styles.css') }}" />
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <div id="brandname">
+                    Sensitive Analysis Result
+                </div>
+                <p style="color: blue; font-size: 20; text-align: right;"><b>Amazon Review classifier</b></p>
+            </div>
+        </header>
+        <div class="results">
+			<p style="color: blue; font-size: 20; text-align: left;"><b>Results for Comment</b></p>
+            {% if prediction == 1%}
+            <h2 style="color: red;">It's a Negative Comment</h2>
+            {% elif prediction == 0%}
+            <h2 style="color: blue;">It's Positive Comment</h2>
+            {% endif %}
+			<img src = 'data:image/png;base64,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'>
+        </div>
+
+        <a href="..">
+            <input type="submit" value="Go Back.." />
+        </a>
+    </body>
+</html>
